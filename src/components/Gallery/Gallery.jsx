@@ -1,39 +1,11 @@
 import { useState, useEffect } from "react";
 import getData from "../../services/api";
 import Button from '@mui/material/Button';
-import { Box } from '@mui/system';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
-import Sidebar from "../Sidebar/Sidebar";
+import Selectors from "../Selectors/Selectors";
 import Content from "../Content/Content";
 import Container from '../Container/Container';
+import Header from '../../components/Header/Header';
 
-const rovers = ['curiosity', 'opportunity', 'spirit'];
-const cameras = [
-    {
-        abv: 'fhaz',
-        name: 'Front Hazard Avoidance Camera',
-    },
-    {
-        abv: 'rhaz',
-        name: 'Rear Hazard Avoidance Camera',
-    },
-    {
-        abv: 'mast',
-        name: 'Mast Camera',
-    },
-    {
-        abv: 'chemcam',
-        name: 'Chemistry and Camera Complex',
-    },
-    {
-        abv: 'minites',
-        name: 'Miniature Thermal Emission Spectrometer (Mini-TES)',
-    },
-];
 
 const Gallery = () => {
   const [data, setData] = useState([]);
@@ -43,7 +15,7 @@ const Gallery = () => {
 
 
   const onHandleSubmit = (e) => {
-      e.preventDefault();
+    e.preventDefault();
       return getData(rover, camera, days).then((res) => setData(res.photos));
   };
 
@@ -67,76 +39,29 @@ const Gallery = () => {
     };
 
   
-
-
-  const styledName = (name) => {
-    const styledStr = name[0].toUpperCase() + name.slice(1);
-
-    return styledStr;
-  };
-
-  
-  
   console.log(camera, days, rover);
   console.log(!data);
 
   return (
       <>
           <Container>
-              <Sidebar>
-                  <FormControl className="form_control">
-                      <InputLabel id="demo-simple-select-label-rover">
-                          Rover
-                      </InputLabel>
-                      <Select
-                          labelId="demo-simple-select-label-rover"
-                          id="demo-simple-select-rover"
-                          value={rover}
-                          label="Rover"
-                          onChange={onChangeRover}
-                      >
-                          {rovers.map((rover) => (
-                              <MenuItem value={rover} key={rover}>
-                                  {styledName(rover)}
-                              </MenuItem>
-                          ))}
-                      </Select>
-                  </FormControl>
-                  <FormControl className="form_control">
-                      <InputLabel id="demo-simple-select-label">
-                          Camera
-                      </InputLabel>
-                      <Select
-                          labelId="demo-simple-select-label"
-                          id="demo-simple-select"
-                          value={camera}
-                          label="Camera"
-                          onChange={onChangeCamera}
-                      >
-                          {cameras.map(({ abv, name }) => (
-                              <MenuItem value={abv} key={name}>
-                                  {name}
-                              </MenuItem>
-                          ))}
-                      </Select>
-                  </FormControl>
-                  <TextField
-                      enabled
-                      id="outlined-disabled"
-                      label="Days"
-                      value={days}
-                      onChange={onChangeDays}
-                  />
-                  <Button
-                      className="form_button"
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      onClick={onHandleSubmit}
-                  >
-                      Explore
-                  </Button>
-              </Sidebar>
+              <Header />
+              <h1 className="title">Explore with Perseverance</h1>
+              <p className="description">
+                  Explore some of the sites the Mars Perseverance rover has
+                  studied up close. View images taken by the rover and learn
+                  about key points of interest
+              </p>
+              <Selectors
+                  rover={rover}
+                  camera={camera}
+                  days={days}
+                  onChangeRover={onChangeRover}
+                  onChangeCamera={onChangeCamera}
+          onChangeDays={onChangeDays}
+          onHandleSubmit={onHandleSubmit}
+        />
+     
               <Content>
                   {data ? (
                       <ul className="list_container">
@@ -145,7 +70,7 @@ const Gallery = () => {
                                   <img
                                       src={obj.img_src}
                                       alt={obj.id}
-                                      width="300px"
+                                      width="250px"
                                   />
                                   <p>{obj.camera.full_name}</p>
                               </li>
@@ -153,20 +78,23 @@ const Gallery = () => {
                       </ul>
                   ) : (
                       <p>Choose options for search images!</p>
-          )}
-          
-          {data.length > 6 ? <Button
-                      className="load_button"
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      // onClick={onHandleSubmit}
-                  >
-                      Load more...
-                  </Button> : ''}
+                  )}
+
+                  {data.length > 6 ? (
+                      <Button
+                          className="load_button"
+                          type="submit"
+                          variant="contained"
+                          color="primary"
+                          // onClick={onHandleSubmit}
+                      >
+                          Load more...
+                      </Button>
+                  ) : (
+                      ''
+                  )}
               </Content>
           </Container>
-
           <style jsx>
               {`
                   .list_container {
@@ -188,7 +116,22 @@ const Gallery = () => {
                       margin-bottom: 20px;
                   }
                   .load_button {
-                    margin-left: 400px;
+                      margin-left: 400px;
+                  }
+                  .title {
+                      margin-top: 12px;
+                      font-weight: 500;
+                      font-size: 70px;
+                      line-height: 140%;
+                      letter-spacing: 0.1px;
+                  }
+                  .description {
+                      width: 815px;
+                      font-weight: 300;
+                      font-size: 24px;
+                      line-height: 160%;
+                      letter-spacing: 0.1px;
+                      color: rgba(255, 255, 255, 0.9);
                   }
               `}
           </style>
