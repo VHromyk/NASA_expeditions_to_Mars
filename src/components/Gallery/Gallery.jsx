@@ -58,10 +58,10 @@ const Gallery = () => {
                   days={days}
                   onChangeRover={onChangeRover}
                   onChangeCamera={onChangeCamera}
-          onChangeDays={onChangeDays}
-          onHandleSubmit={onHandleSubmit}
-        />
-     
+                  onChangeDays={onChangeDays}
+                  onHandleSubmit={onHandleSubmit}
+              />
+
               <Content>
                   {data ? (
                       <ul className="list_container">
@@ -70,9 +70,8 @@ const Gallery = () => {
                                   <img
                                       src={obj.img_src}
                                       alt={obj.id}
-                                      width="250px"
+                                      width="168px"
                                   />
-                                  <p>{obj.camera.full_name}</p>
                               </li>
                           ))}
                       </ul>
@@ -100,26 +99,24 @@ const Gallery = () => {
                   .list_container {
                       display: flex;
                       flex-wrap: wrap;
-                      margin: -10px;
+                      margin: -12px;
                   }
                   .list_element {
                       list-style: none;
-                      margin: 20px;
+                      margin: 12px;
                   }
                   .form_button {
-                      margin-top: 20px;
-                      width: 160px;
-                      margin-left: auto;
-                      margin-right: auto;
-                  }
-                  .form_control {
-                      margin-bottom: 20px;
+                      width: 147px;
                   }
                   .load_button {
-                      margin-left: 400px;
+                      display: block;
+                      margin-left: auto;
+                      margin-right: auto;
+                      margin-top: 60px;
+                      margin-bottom: 60px;
                   }
                   .title {
-                      margin-top: 12px;
+                      margin-top: 212px;
                       font-weight: 500;
                       font-size: 70px;
                       line-height: 140%;

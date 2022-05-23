@@ -5,7 +5,7 @@ const Content = ({ children }) => {
             <style jsx>
                 {`
                     .container_content {
-                        width: 75%;
+                        margin-top: 48px;
                     }
                 `}
             </style>

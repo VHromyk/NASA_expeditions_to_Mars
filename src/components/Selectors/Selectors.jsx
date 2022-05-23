@@ -4,8 +4,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import '../../../src/global.css'
-
 
 const rovers = ['curiosity', 'opportunity', 'spirit'];
 const cameras = [
@@ -53,89 +51,79 @@ const Selectors = ({ rover, camera, days, onChangeRover, onChangeCamera, onChang
     
     return (
         <>
-            <div className="selectors_container">
-                <FormControl className="form_control">
-                    <InputLabel
-                        id="demo-simple-select-label-rover"
-                        sx={{
-                            color: 'orange',
-                            display: 'inline',
-                            fontWeight: 'medium',
-                            mx: 0.5,
-                            width: 264,
-                        }}
+                <div className="selectors_container">
+                    <FormControl className="form_control">
+                        <InputLabel id="demo-simple-select-label-rover">
+                            Rover
+                        </InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label-rover"
+                            id="demo-simple-select-rover"
+                            variant="outlined"
+                            value={rover}
+                            label="Rover"
+                            onChange={onChangeRover}
+                        >
+                            {rovers.map((rover) => (
+                                <MenuItem value={rover} key={rover}>
+                                    {styledName(rover)}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                    <FormControl className="form_control_camera">
+                        <InputLabel id="demo-simple-select-label">
+                            Camera
+                        </InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={camera}
+                            label="Camera"
+                            onChange={onChangeCamera}
+                        >
+                            {cameras.map(({ abv, name }) => (
+                                <MenuItem value={abv} key={name}>
+                                    {name}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                    <TextField
+                        className="field_days"
+                        enabled
+                        id="outlined-disabled"
+                        label="Days"
+                        value={days}
+                        onChange={onChangeDays}
+                    />
+                    <Button
+                        className="form_button"
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        onClick={onHandleSubmit}
                     >
-                        Rover
-                    </InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label-rover"
-                        id="demo-simple-select-rover"
-                        variant="outlined"
-                        value={rover}
-                        label="Rover"
-                        onChange={onChangeRover}
-                        sx={{
-                            color: 'orange',
-                            width: 264,
-                            borderColor: 'orange !important',
-                        }}
-                    >
-                        {rovers.map((rover) => (
-                            <MenuItem value={rover} key={rover}>
-                                {styledName(rover)}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <FormControl className="form_control">
-                    <InputLabel id="demo-simple-select-label">
-                        Camera
-                    </InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={camera}
-                        label="Camera"
-                        onChange={onChangeCamera}
-                    >
-                        {cameras.map(({ abv, name }) => (
-                            <MenuItem value={abv} key={name}>
-                                {name}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <TextField
-                    enabled
-                    id="outlined-disabled"
-                    label="Days"
-                    value={days}
-                    onChange={onChangeDays}
-                />
-                {/* <Button
-                    className="form_button"
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    onClick={onHandleSubmit}
-                >
-                    Explore
-                </Button> */}
-            </div>
-
+                        Select
+                    </Button>
+                </div>
             <style jsx>
                 {`
                     .selectors_container {
                         margin-top: 30px;
-                        // padding-left: 15px;
-                        // padding-right: 15px;
-                        // display: flex;
-                        // flex-direction: column;
+                        display: flex;
+                        align-items: center;
+
                     }
-                    .test_label {
-                        color: #000 !important;
-                        border-color: #000 !important;
-                        width: 300px !important;
+                    .form_control_camera {
+                        margin-left: 24px;
+                    }
+                    .field_days {
+                        margin-left: 24px;
+                    }
+                    .form_button {
+                        margin-left: 24px;
+                        margin-top: 15px;
                     }
                 `}
             </style>
