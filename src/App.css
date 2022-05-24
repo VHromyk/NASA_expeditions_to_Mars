@@ -17,10 +17,12 @@ dd {
   margin: 0;
 }
 
-html {
-  overflow-x: hidden;
-  margin-right: calc(-1 * (100vw - 100%));
+ul[class],
+ol[class] {
+  padding: 0;
 }
+
+
 
 .App {
   text-align: center;
@@ -61,7 +63,3 @@ html {
   }
 }
 
-body {
-  background-image: url('./images/mars_3x.png');
-  background-size: cover;
-}

@@ -2,8 +2,6 @@
 const Container = ({children}) => {
   return (
     <div style={{
-      height: '100vh',
-      
       color: "white",
     }}>
           <div className="container_box">{children}</div>

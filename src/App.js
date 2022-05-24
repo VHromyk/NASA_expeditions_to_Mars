@@ -2,6 +2,7 @@ import * as React from 'react';
 import './App.css';
 import Gallery from './components/Gallery/Gallery';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import StyledEngineProvider from '@mui/material/StyledEngineProvider';
 
 const theme = createTheme({
     components: {
@@ -11,9 +12,6 @@ const theme = createTheme({
                     color: 'white',
                     backgroundColor: 'orange',
                     borderRadius: 100,
-                    '&:hover': {
-                        backgroundColor: '#EF6C00',
-                    },
                 },
             },
         },
@@ -25,30 +23,27 @@ const theme = createTheme({
                 },
             },
         },
-        MuiOutlinedInput: {
-            styleOverrides: {
-                root: {
-                    backgroundColor: 'orange',
-                    color: 'white',
-                },
-            },
-        },
+        
         MuiInputLabel: {
             styleOverrides: {
                 root: {
-                    color: 'white',
+                    color: 'grey',
                 },
             },
         },
     },
 });
 
+
+
 function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Gallery />
-    </ThemeProvider>
-  );
+    return (
+        <StyledEngineProvider injectFirst>
+         <ThemeProvider theme={theme}>
+            <Gallery />
+            </ThemeProvider>
+        </StyledEngineProvider>
+    );
 }
 
 export default App;
