@@ -51,69 +51,68 @@ const Selectors = ({ rover, camera, days, onChangeRover, onChangeCamera, onChang
     
     return (
         <>
-                <div className="selectors_container">
-                    <FormControl className="form_control">
-                        <InputLabel id="demo-simple-select-label-rover">
-                            Rover
-                        </InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label-rover"
-                            id="demo-simple-select-rover"
-                            variant="outlined"
-                            value={rover}
-                            label="Rover"
-                            onChange={onChangeRover}
-                        >
-                            {rovers.map((rover) => (
-                                <MenuItem value={rover} key={rover}>
-                                    {styledName(rover)}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                    <FormControl className="form_control_camera">
-                        <InputLabel id="demo-simple-select-label">
-                            Camera
-                        </InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={camera}
-                            label="Camera"
-                            onChange={onChangeCamera}
-                        >
-                            {cameras.map(({ abv, name }) => (
-                                <MenuItem value={abv} key={name}>
-                                    {name}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                    <TextField
-                        className="field_days"
-                        enabled
-                        id="outlined-disabled"
-                        label="Days"
-                        value={days}
-                        onChange={onChangeDays}
-                    />
-                    <Button
-                        className="form_button"
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        onClick={onHandleSubmit}
+            <div className="selectors_container">
+                <FormControl className="form_control">
+                    <InputLabel id="demo-simple-select-label-rover">
+                        Rover
+                    </InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label-rover"
+                        id="demo-simple-select-rover"
+                        variant="outlined"
+                        value={rover}
+                        label="Rover"
+                        onChange={onChangeRover}
                     >
-                        Select
-                    </Button>
-                </div>
+                        {rovers.map((rover) => (
+                            <MenuItem value={rover} key={rover}>
+                                {styledName(rover)}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+                <FormControl className="form_control_camera">
+                    <InputLabel id="demo-simple-select-label">
+                        Camera
+                    </InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={camera}
+                        label="Camera"
+                        onChange={onChangeCamera}
+                    >
+                        {cameras.map(({ abv, name }) => (
+                            <MenuItem value={abv} key={name}>
+                                {name}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+                <TextField
+                    className="field_days"
+                    enabled
+                    id="outlined-disabled"
+                    label="Number of days"
+                    value={days}
+                    onChange={onChangeDays}
+                />
+                <Button
+                    className="form_button"
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    onClick={onHandleSubmit}
+                >
+                    Select
+                </Button>
+            </div>
             <style jsx>
                 {`
                     .selectors_container {
                         margin-top: 30px;
                         display: flex;
                         align-items: center;
-
                     }
                     .form_control_camera {
                         margin-left: 24px;
